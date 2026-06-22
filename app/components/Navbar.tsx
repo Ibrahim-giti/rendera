@@ -10,9 +10,9 @@ export default function Navbar() {
         <Link href="/fastigheter" className="text-sm text-gray-500 hover:text-black transition-colors">
           Fastigheter
         </Link>
-        <Link href="/admin" className="text-sm bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
-          Admin
-        </Link>
+  <Link href="/login" className="text-sm bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors">
+    Admin
+  </Link>
       </div>
     </nav>
   )
