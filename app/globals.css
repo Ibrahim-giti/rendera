@@ -1,1 +1,18 @@
 @import "tailwindcss";
+
+:root {
+  --bg: #FAFAF7;
+  --ink: #1E2521;
+  --ink-soft: #56605A;
+  --accent: #3E5C50;
+  --line: #E2DFD6;
+  --surface: #F1EFE9;
+}
+
+@layer base {
+body {
+  font-family: "Schibsted Grotesk", -apple-system, sans-serif !important;
+  background-color: #FAFAF7 !important;
+  color: #1E2521;
+}
+}

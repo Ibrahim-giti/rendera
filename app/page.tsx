@@ -1,6 +1,6 @@
 export default function Page() {
   return (
-    <main>
+    <main style={{ backgroundColor: '#FAFAF7' }}>
       <section className="flex flex-col items-center justify-center text-center px-4 min-h-[90vh]">
         <p className="text-sm tracking-widest text-gray-400 uppercase mb-6">
           Virtuella visningar
@@ -20,7 +20,7 @@ export default function Page() {
           </a>
         </div>
       </section>
-
+        
       <section className="border-t border-gray-100 py-16 px-8">
         <div className="max-w-6xl mx-auto grid grid-cols-3 gap-12 text-center">
           <div>

@@ -17,3 +17,6 @@ values
   ('Storgatan 12', 'Storgatan 12', 'Stockholm', 4500000, 72, 3, 'Ljus och fin lägenhet i centrala Stockholm', null, 'active'),
   ('Kungsgatan 5', 'Kungsgatan 5', 'Göteborg', 3200000, 58, 2, 'Modern lägenhet nära Avenyn', null, 'active'),
   ('Drottninggatan 8', 'Drottninggatan 8', 'Malmö', 2800000, 65, 3, 'Rymlig lägenhet i hjärtat av Malmö', null, 'active');
+
+
+alter table properties add column image_url text;
