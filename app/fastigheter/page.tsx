@@ -1,4 +1,4 @@
-export const revalidate = 0
+const revalidate = 0
 
 import { supabase } from "../lib/supabase"
 
@@ -15,6 +15,7 @@ export default async function Page() {
         <h1 className="text-4xl font-semibold tracking-tight">Fastigheter</h1>
       </div>
 
+<div className="grid grid-cols-3 gap-8">
 {fastigheter?.map((f) => (
   <a href={`/fastigheter/${f.id}`}
     key={f.id}
@@ -22,7 +23,7 @@ export default async function Page() {
   >
     <div className="rounded-2xl h-56 mb-4 overflow-hidden bg-gray-100">
       <img
-        src={f.image_url || `https://placehold.co/800x600/f3f4f6/f3f4f6`}
+        src={f.image_url || '/placeholder.jpg'}
         alt={f.title}
         className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
       />
@@ -34,9 +35,10 @@ export default async function Page() {
         <span className="text-gray-500">{f.size_sqm} m² · {f.rooms} rum</span>
         <span className="font-medium">{f.price.toLocaleString("sv-SE")} kr</span>
       </div>
-    </div>
+      </div>
   </a>
 ))}
+    </div>
     </main>
   )
 }
