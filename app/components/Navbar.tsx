@@ -7,11 +7,17 @@ export default function Navbar() {
         Rendera
       </Link>
       <div className="flex items-center gap-8">
+        <Link href="/tjanster" className="text-sm transition-colors" style={{ color: '#56605A' }}>
+          Tjänster
+        </Link>
         <Link href="/fastigheter" className="text-sm transition-colors" style={{ color: '#56605A' }}>
           Fastigheter
         </Link>
-        <Link href="/login" className="text-sm px-4 py-2 rounded-full text-white transition-colors" style={{ backgroundColor: '#3E5C50' }}>
-          Admin
+        <Link href="/kontakt" className="text-sm transition-colors" style={{ color: '#56605A' }}>
+          Kontakt
+        </Link>
+        <Link href="/kontakt" className="text-sm px-4 py-2 rounded-full text-white transition-colors" style={{ backgroundColor: '#3E5C50' }}>
+          Boka nu
         </Link>
       </div>
     </nav>
