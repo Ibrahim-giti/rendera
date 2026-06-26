@@ -15,7 +15,7 @@ export default function Page() {
           <a href="/fastigheter" className="bg-black text-white px-6 py-3 rounded-full text-sm hover:bg-gray-800 transition-colors">
             Se alla fastigheter
           </a>
-          <a href="#" className="border border-gray-200 text-gray-600 px-6 py-3 rounded-full text-sm hover:border-gray-400 transition-colors">
+          <a href="/kontakt" className="border border-gray-200 text-gray-600 px-6 py-3 rounded-full text-sm hover:border-gray-400 transition-colors">
             För mäklare
           </a>
         </div>

@@ -14,3 +14,8 @@ create policy "Alla kan skicka kontaktformulär"
 on contacts
 for insert
 with check (true);
+
+create policy "Admins kan läsa kontakter"
+on contacts
+for select
+using (true);
