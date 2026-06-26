@@ -1,4 +1,28 @@
+"use client"
+
+import { useState } from "react"
+import { supabase } from "../lib/supabase"
+
 export default function Page() {
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    type: "Mäklare",
+    message: "",
+  })
+  const [loading, setLoading] = useState(false)
+  const [success, setSuccess] = useState(false)
+
+  async function handleSubmit(e) {
+    e.preventDefault()
+    setLoading(true)
+
+    const { error } = await supabase.from("contacts").insert(form)
+
+    if (!error) setSuccess(true)
+    setLoading(false)
+  }
+
   return (
     <main className="max-w-4xl mx-auto px-8 py-24">
       <div className="mb-16">
@@ -10,13 +34,17 @@ export default function Page() {
       </div>
 
       <div className="grid grid-cols-2 gap-16">
-        <form className="flex flex-col gap-4">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          {success && <p className="text-sm p-4 rounded-xl" style={{ backgroundColor: '#D9E4DF', color: '#3E5C50' }}>Tack! Vi återkommer inom 24 timmar.</p>}
+
           <div className="flex flex-col gap-1">
             <label className="text-sm font-medium">Namn</label>
             <input
               className="border rounded-xl px-4 py-3 text-sm outline-none"
               style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }}
               placeholder="Ditt namn"
+              value={form.name}
+              onChange={e => setForm({...form, name: e.target.value})}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -26,6 +54,8 @@ export default function Page() {
               className="border rounded-xl px-4 py-3 text-sm outline-none"
               style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }}
               placeholder="din@email.se"
+              value={form.email}
+              onChange={e => setForm({...form, email: e.target.value})}
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -33,6 +63,8 @@ export default function Page() {
             <select
               className="border rounded-xl px-4 py-3 text-sm outline-none"
               style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9', color: '#56605A' }}
+              value={form.type}
+              onChange={e => setForm({...form, type: e.target.value})}
             >
               <option>Mäklare</option>
               <option>Privatperson</option>
@@ -46,14 +78,17 @@ export default function Page() {
               style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }}
               rows={4}
               placeholder="Berätta om bostaden – typ, storlek, ort..."
+              value={form.message}
+              onChange={e => setForm({...form, message: e.target.value})}
             />
           </div>
           <button
             type="submit"
             className="px-6 py-3 rounded-full text-white font-medium text-sm mt-2 transition-colors"
             style={{ backgroundColor: '#3E5C50' }}
+            disabled={loading}
           >
-            Skicka förfrågan →
+            {loading ? "Skickar..." : "Skicka förfrågan →"}
           </button>
         </form>
 

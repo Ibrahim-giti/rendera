@@ -21,23 +21,6 @@ export default function Page() {
         </div>
       </section>
         
-      <section className="border-t border-gray-100 py-16 px-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-3 gap-12 text-center">
-          <div>
-            <p className="text-4xl font-semibold mb-2">3D</p>
-            <p className="text-gray-400 text-sm">Fotorealistiska visningar</p>
-          </div>
-          <div>
-            <p className="text-4xl font-semibold mb-2">24/7</p>
-            <p className="text-gray-400 text-sm">Tillgängligt när du vill</p>
-          </div>
-          <div>
-            <p className="text-4xl font-semibold mb-2">100%</p>
-            <p className="text-gray-400 text-sm">Svenska bostäder</p>
-          </div>
-        </div>
-      </section>
-      
     </main>
   )
 }
