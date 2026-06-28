@@ -1,4 +1,4 @@
-const revalidate = 0
+export const revalidate = 0
 
 import { supabase } from "../lib/supabase"
 

@@ -1,3 +1,5 @@
+import DronareDemo from "../../components/DronarDemo"
+
 export default function Page() {
   return (
     <main className="max-w-4xl mx-auto px-8 py-24">
@@ -11,18 +13,7 @@ export default function Page() {
         Flygfoton som visar läget, tomten och omgivningen – det markbilder aldrig kan. Särskilt värdefullt för villor, gårdar och skogsfastigheter där arealen är halva affären.
       </p>
       
-<div className="rounded-2xl overflow-hidden mb-16 relative" style={{ height: '500px' }}>
-  <div
-    className="absolute inset-0 bg-cover bg-center"
-    style={{
-      backgroundImage: "url('/dronare.jpg')",
-      animation: "kenburns 12s ease-in-out infinite alternate",
-    }}
-  />
-  <div className="absolute inset-0 flex items-end p-8" style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.4), transparent)' }}>
-    <p className="text-white text-sm font-medium">Drönarfoto</p>
-  </div>
-</div>
+    <DronareDemo />
 
       <div className="grid grid-cols-2 gap-8 mb-16">
         <div>
