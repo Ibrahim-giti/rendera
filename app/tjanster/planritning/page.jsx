@@ -1,3 +1,5 @@
+import PlanritningDemo from "../../components/PlanritningDemo"
+
 export default function Page() {
   return (
     <main className="max-w-4xl mx-auto px-8 py-24">
@@ -11,9 +13,7 @@ export default function Page() {
         En tydlig planritning i både 2D och 3D med rumsmått och möblering. Spekulanten förstår planlösningen på sekunder – och annonsen ser mer genomarbetad ut.
       </p>
 
-      <div className="rounded-2xl h-72 mb-16 flex items-center justify-center" style={{ backgroundColor: '#F1EFE9' }}>
-        <p style={{ color: '#56605A' }}>Exempelritning kommer här</p>
-      </div>
+   <PlanritningDemo />
 
       <div className="grid grid-cols-2 gap-8 mb-16">
         <div>

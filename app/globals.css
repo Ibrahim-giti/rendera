@@ -16,3 +16,12 @@ body {
   color: #1E2521;
 }
 }
+
+@keyframes kenburns {
+  from {
+    transform: scale(1) translate(0, 0);
+  }
+  to {
+    transform: scale(1.15) translate(-2%, -2%);
+  }
+}

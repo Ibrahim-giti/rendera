@@ -11,10 +11,14 @@ export default function Page() {
         En klickbar 360°-visning av hela bostaden som öppnas direkt i webbläsaren – ingen app behövs. Spekulanten rör sig fritt mellan rummen, i mobilen eller på datorn.
       </p>
 
-      <div className="rounded-2xl h-72 mb-16 flex items-center justify-center" style={{ backgroundColor: '#F1EFE9' }}>
-        <p style={{ color: '#56605A' }}>Demo-tour kommer här</p>
+      <div className="rounded-2xl overflow-hidden mb-16" style={{ height: '500px' }}>
+        <iframe
+          src="https://my.matterport.com/show/?m=uRGXgoiYk9f"
+          className="w-full h-full"
+          allowFullScreen
+        />
       </div>
-
+      
       <div className="grid grid-cols-2 gap-8 mb-16">
         <div>
           <h3 className="font-semibold text-lg mb-3">Vad ingår</h3>
