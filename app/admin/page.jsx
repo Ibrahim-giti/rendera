@@ -7,16 +7,12 @@ import { useRouter } from "next/navigation"
 export default function Page() {
   const [loading, setLoading] = useState(true)
   const [activeTab, setActiveTab] = useState("fastigheter")
-  const [form, setForm] = useState({
-    title: "",
-    address: "",
-    city: "",
-    price: "",
-    size_sqm: "",
-    rooms: "",
-    description: "",
-    tour_url: "",
-  })
+const [form, setForm] = useState({
+  title: "",
+  address: "",
+  city: "",
+  tour_url: "",
+})
   const [success, setSuccess] = useState(false)
   const [contacts, setContacts] = useState([])
   const router = useRouter()
@@ -51,10 +47,13 @@ export default function Page() {
     e.preventDefault()
     setLoading(true)
     const { error } = await supabase.from("properties").insert({
-      ...form,
-      price: parseInt(form.price),
-      size_sqm: parseInt(form.size_sqm),
-      rooms: parseInt(form.rooms),
+      title: form.title,
+      address: form.address,
+      city: form.city,
+      tour_url: form.tour_url,
+      price: 0,
+      size_sqm: 0,
+      rooms: 0,
     })
     if (!error) setSuccess(true)
     setLoading(false)
@@ -96,19 +95,15 @@ export default function Page() {
       {activeTab === "fastigheter" && (
         <div className="max-w-2xl">
           {success && <p className="text-sm p-4 rounded-xl mb-4" style={{ backgroundColor: '#D9E4DF', color: '#3E5C50' }}>Fastigheten lades till!</p>}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Titel" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Adress" value={form.address} onChange={e => setForm({...form, address: e.target.value})} />
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Stad" value={form.city} onChange={e => setForm({...form, city: e.target.value})} />
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Pris" type="number" value={form.price} onChange={e => setForm({...form, price: e.target.value})} />
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Storlek (m²)" type="number" value={form.size_sqm} onChange={e => setForm({...form, size_sqm: e.target.value})} />
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Antal rum" type="number" value={form.rooms} onChange={e => setForm({...form, rooms: e.target.value})} />
-            <textarea className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Beskrivning" value={form.description} onChange={e => setForm({...form, description: e.target.value})} />
-            <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Matterport URL" value={form.tour_url} onChange={e => setForm({...form, tour_url: e.target.value})} />
-            <button type="submit" className="px-6 py-3 rounded-full text-white font-medium text-sm" style={{ backgroundColor: '#3E5C50' }} disabled={loading}>
-              {loading ? "Sparar..." : "Lägg till fastighet"}
-            </button>
-          </form>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Titel" value={form.title} onChange={e => setForm({...form, title: e.target.value})} />
+        <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Adress" value={form.address} onChange={e => setForm({...form, address: e.target.value})} />
+        <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Stad" value={form.city} onChange={e => setForm({...form, city: e.target.value})} />
+        <input className="border rounded-xl px-4 py-3 text-sm outline-none" style={{ borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }} placeholder="Matterport URL" value={form.tour_url} onChange={e => setForm({...form, tour_url: e.target.value})} />
+        <button type="submit" className="px-6 py-3 rounded-full text-white font-medium text-sm" style={{ backgroundColor: '#3E5C50' }} disabled={loading}>
+          {loading ? "Sparar..." : "Lägg till fastighet"}
+        </button>
+      </form>
         </div>
       )}
 

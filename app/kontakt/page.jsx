@@ -107,7 +107,7 @@ export default function Page() {
           </div>
           <div>
             <h3 className="font-semibold mb-2">E-post</h3>
-            <a href="mailto:hej@rendera.se" className="text-sm" style={{ color: '#3E5C50' }}>vår epost lägger vi här</a>
+            <a href="mailto:hej@rendera.se" className="text-sm" style={{ color: '#3E5C50' }}>ibraabakar@outlook.com</a>
           </div>
         </div>
       </div>
