@@ -13,17 +13,37 @@ export default function Page() {
     message: "",
   })
 
-  function handleSubmit(e) {
+  // "idle" | "sending" | "sent" | "error"
+  const [status, setStatus] = useState("idle")
+
+  // Skickas via FormSubmit (formsubmit.co), som vidarebefordrar till EPOST.
+  // Första gången formuläret används skickar FormSubmit ett aktiveringsmejl
+  // till EPOST som måste bekräftas innan förfrågningar börjar komma fram.
+  async function handleSubmit(e) {
     e.preventDefault()
-    const subject = `Förfrågan från ${form.name || "hemsidan"} (${form.type})`
-    const body = [
-      `Namn: ${form.name}`,
-      `E-post: ${form.email}`,
-      `Jag är: ${form.type}`,
-      "",
-      form.message,
-    ].join("\n")
-    window.location.href = `mailto:${EPOST}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    setStatus("sending")
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${EPOST}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          _subject: `Förfrågan från ${form.name || "hemsidan"} (${form.type})`,
+          _template: "table",
+          _captcha: "false",
+          _replyto: form.email,
+          Namn: form.name,
+          "E-post": form.email,
+          "Jag är": form.type,
+          Meddelande: form.message,
+        }),
+      })
+      const data = await res.json().catch(() => ({}))
+      if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "Kunde inte skicka")
+      setStatus("sent")
+      setForm({ name: "", email: "", type: "Mäklare", message: "" })
+    } catch {
+      setStatus("error")
+    }
   }
 
   const fieldStyle = { borderColor: '#E2DFD6', backgroundColor: '#F1EFE9' }
@@ -95,12 +115,22 @@ export default function Page() {
           </div>
           <button
             type="submit"
-            className="px-6 py-3 rounded-full text-white font-medium text-sm mt-2 transition-colors"
+            disabled={status === "sending"}
+            className="px-6 py-3 rounded-full text-white font-medium text-sm mt-2 transition-colors disabled:opacity-60"
             style={{ backgroundColor: '#3E5C50' }}
           >
-            Skicka förfrågan →
+            {status === "sending" ? "Skickar..." : "Skicka förfrågan →"}
           </button>
-          <p className="text-xs" style={{ color: '#56605A' }}>Knappen öppnar ett färdigskrivet mejl i ditt mejlprogram.</p>
+          {status === "sent" && (
+            <p role="status" className="text-sm p-4 rounded-xl" style={{ backgroundColor: '#D9E4DF', color: '#3E5C50' }}>
+              Tack! Vi har fått din förfrågan och återkommer inom 24 timmar.
+            </p>
+          )}
+          {status === "error" && (
+            <p role="alert" className="text-sm p-4 rounded-xl" style={{ backgroundColor: '#F3E3DC', color: '#7A3B26' }}>
+              Något gick fel. Mejla oss direkt på <a href={`mailto:${EPOST}`} className="underline">{EPOST}</a> så svarar vi ändå.
+            </p>
+          )}
         </form>
 
         <div className="flex flex-col gap-8 pt-2">
