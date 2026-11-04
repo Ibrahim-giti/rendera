@@ -1,5 +1,11 @@
+import type { Metadata } from "next"
 import Navbar from "./components/Navbar"
 import "./globals.css"
+
+export const metadata: Metadata = {
+  title: "Rendera – virtuella 3D-visningar av bostäder",
+  description: "Vi skannar bostäder i 3D åt mäklare, husbolag och privatpersoner. Visningen öppnas direkt i webbläsaren – ingen app behövs.",
+}
 
 export default function RootLayout({
   children,
